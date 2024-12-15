@@ -1,0 +1,22 @@
+<?php
+// Устанавливаем временную зону для Москвы
+date_default_timezone_set('Europe/Moscow');
+
+// Получаем текущее время
+$current_time = new DateTime();
+
+// Создаем объект времени для сегодняшнего дня на 21:00
+$target_time = new DateTime('today 21:00');
+
+// Если текущее время уже прошло 21:00, устанавливаем цель на следующий день
+if ($current_time > $target_time) {
+    $target_time->modify('+1 day');
+}
+
+// Вычисляем разницу между текущим временем и 21:00
+$interval = $current_time->diff($target_time);
+
+// Форматируем оставшееся время
+echo "До 21:00 по МСК осталось: ";
+echo $interval->format('%H часов %I минут %S секунд');
+?>
